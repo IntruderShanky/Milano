@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        minSdkVersion 12
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'milano'
+
+    publishedGroupId = 'com.intrusoft.milano'
+    libraryName = 'Milano'
+    artifact = 'milano'
+
+    libraryDescription = 'An Automated Cookies Handler library for Android'
+
+    siteUrl = 'https://github.com/IntruderShanky/Milano'
+    gitUrl = 'https://github.com/IntruderShanky/Milano.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'intrudershanky'
+    developerName = 'Intruder Shanky'
+    developerEmail = 'intrudershanky@outlook.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.1.0'
+    testCompile 'junit:junit:4.12'
+}
+
+
+apply from: 'https://raw.githubusercontent.com/IntruderShanky/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/IntruderShanky/JCenter/master/bintrayv1.gradle'
