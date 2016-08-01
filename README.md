@@ -1,6 +1,8 @@
 Milano
 --------
-##An android cookies manager library
+An automated cookies manager library for android.
+
+
 
 Download
 --------
@@ -10,10 +12,14 @@ Grab via Gradle:
 compile 'com.intrusoft.milano:milano:1.0.0'
 ```
 
+
+
 Features
 --------
 - Automatic Mangage Cookies.
 - Customizable
+
+
 
 Implementation
 -----------
@@ -76,6 +82,8 @@ Milano.along(MainActivity.this)
                     }
             });
 ```
+
+
 
 
 
