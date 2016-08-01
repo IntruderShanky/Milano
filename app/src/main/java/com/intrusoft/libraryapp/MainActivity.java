@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity {
 
     TextView view;
-
+    String url="www.myjson.com", request="{/"name/":/"akash"}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         view.setText("");
 
 
-        Milano.along(MainActivity.this).execute(new OnRequestComplete() {
+        Milano.along(MainActivity.this)
+        .fromUrl(url)
+        .execute(new OnRequestComplete() {
             @Override
             public void onComplete(String response) {
 
@@ -35,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
                 .displayLoadingMessage("Finally")
                 .displayLoadingTitle("THIs is Title")
                 .manageCookies(true)
-                .fromUrl("https://shipoya.com/auth_resources/api/user_login")
-                .doPost("{\"remember_me\":\"true\",\"identifier\":\"7206820942\",\"password\":\"admin\"}")
+                .fromUrl(url)
+                .doPost(request)
                 .execute(new OnRequestComplete() {
                     @Override
                     public void onComplete(String response) {
                         addText(response);
                         Milano.along(MainActivity.this)
-                                .fromUrl("https://shipoya.com/auction_resources/api/loads/carrier_loads")
+                                .fromUrl(url)
                                 .manageCookies(true)
                                 .displayLoadingTitle("Loading")
                                 .displayLoadingMessage("User Data")
@@ -55,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
                                 });
                     }
                 });
-
-        Picasso.with(MainActivity.this).load(R.mipmap.ic_launcher).into(new ImageView(MainActivity.this));
-
     }
 
     public void addText(String text) {
