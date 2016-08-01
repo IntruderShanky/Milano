@@ -70,7 +70,7 @@ Milano.along(MainActivity.this)
 
 ```java
 Milano.along(MainActivity.this)
-            .fromUrl("https://shipoya.com/auction_resources/api/loads/carrier_loads")
+            .fromUrl(url)
             .manageCookies(true)
             .displayLoadingTitle("Loading")
             .displayLoadingMessage("User Data")
