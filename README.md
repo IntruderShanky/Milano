@@ -1,5 +1,6 @@
 Milano
 --------
+Easy HTTP Request.
 An automated cookies manager library for android.
 
 
