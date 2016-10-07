@@ -1,5 +1,7 @@
 Milano
 --------
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Milano-yellowgreen.svg?style=flat-square)](http://android-arsenal.com/details/1/4459)
+--------
 Easy HTTP Request.
 An automated cookies manager library for android.
 
