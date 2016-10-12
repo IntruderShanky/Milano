@@ -24,6 +24,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.1.0'
     compile project(':milano')
     testCompile 'junit:junit:4.12'
-    compile 'com.github.developer-shivam:Perfecto:1.6'
-    compile 'com.squareup.picasso:picasso:2.5.2'
 }
