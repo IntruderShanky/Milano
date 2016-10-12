@@ -29,12 +29,12 @@ ext {
     libraryName = 'Milano'
     artifact = 'milano'
 
-    libraryDescription = 'An Automated Cookies Handler library for Android'
+    libraryDescription = 'Perfect HTTP request handler with cookies. An Automated cookies handler libary for android'
 
     siteUrl = 'https://github.com/IntruderShanky/Milano'
     gitUrl = 'https://github.com/IntruderShanky/Milano.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.1.0'
 
     developerId = 'intrudershanky'
     developerName = 'Intruder Shanky'
