@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 public class Convert {
 
+    /**
+     * To convert the {@link InputStream} into {@link String}
+     * @param stream
+     * @return
+     */
     static public String toString(InputStream stream) {
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder();
@@ -31,6 +36,11 @@ public class Convert {
         return sb.toString();
     }
 
+    /**
+     * To convert {@link String} array into {@link ArrayList}
+     * @param list
+     * @return
+     */
     static public String[] toString(ArrayList<String> list) {
         String r[] = new String[list.size()];
         for (int i = 0; i < list.size(); i++)

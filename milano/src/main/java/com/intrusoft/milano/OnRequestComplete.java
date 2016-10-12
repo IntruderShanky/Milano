@@ -5,5 +5,7 @@ package com.intrusoft.milano;
  */
 
 public interface OnRequestComplete {
-    public void onComplete(String response);
+    public void onSuccess(String response, int responseCode);
+
+    public void onError(String error, int errorCode);
 }

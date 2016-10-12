@@ -5,6 +5,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
+/**
+ * To check if the device is connected to the Internet or not.
+ */
 public class NetworkConnection {
 
     @NonNull
