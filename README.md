@@ -1,94 +1,99 @@
 Milano
 --------
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Milano-yellowgreen.svg?style=flat-square)](http://android-arsenal.com/details/1/4459)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Milano-blue.svg?style=flat)](http://android-arsenal.com/details/1/4459) [ ![Download](https://api.bintray.com/packages/intrudershanky/maven/milano/images/download.svg) ](https://bintray.com/intrudershanky/maven/milano/_latestVersion) [![API](https://img.shields.io/badge/API-9%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=9) [![](https://jitpack.io/v/IntruderShanky/Milano.svg)](https://jitpack.io/#IntruderShanky/Milano)
 --------
-Easy HTTP Request.
+Easy to make HTTP Request.
+Easy to manage cookies with HTTP Request and HTTP Response.
 An automated cookies manager library for android.
 
-
-
-Download
---------
-
-Grab via Gradle:
+#Download
+###Download via JitPack
+#####Step 1. Add it in your root build.gradle at the end of repositories:
 ```groovy
-compile 'com.intrusoft.milano:milano:1.0.0'
+allprojects {
+    repositories {
+    ...
+    maven { url "https://jitpack.io" }
+    }
+}
 ```
-
-
+#####Step 2. Add the dependency
+```groovy
+compile 'com.github.IntruderShanky:Milano:1.1.0'
+```
+####**OR**
+###Download via Gradle
+```groovy
+compile 'com.intrusoft.milano:milano:1.1.0'
+```
 
 Features
 --------
+- Easy to make HTTP Request.
+- Easy to manage cookies.
 - Automatic Mangage Cookies.
-- Customizable
-
-
+- Customizable HTTP Request
 
 Implementation
 -----------
-###Initially:
-- manageCookies method set to false.
-- Request method is set to "GET"
 
-If manageCookies() is not set to true, then this will not manage cookies with request and response.
-
-#### To make GET request
-
+#### To make fluent request using singleton instance
 ```java
 Milano.along(MainActivity.this)
-            .manageCookies(true)
-            .fromUrl(url)
-            .execute(new OnRequestComplete() {
-                @Override
-                public void onComplete(String response) {
-                    // Do whatever you want to do with response
-                }
-            });
-    
+      .fromURL("https://your_api.com/data")
+      .doGet()
+      .shouldManageCookies(true)        //if false then will not set cookies to request or retrieve cookies from response.
+      .execute(new OnRequestComplete() {
+            @Override
+            public void onSuccess(String response, int responseCode) {
+                   //Do whatever you want to do
+                   addText("\nResponse: " + response);
+            }
+            
+            @Override
+            public void onError(String error, int errorCode) {
+                   //Do whatever you want to do
+                   addText("\nError: " + error);
+            }
+       });
 ```
 
-
-
-#### To make POST request
-
+#### To make customized HTTP request use Milano.Builder
 ```java
-Milano.along(MainActivity.this)
-            .manageCookies(true)
-            .fromUrl(url)
-            .doPost(request)
-            .execute(new OnRequestComplete() {
-                @Override
-                public void onComplete(String response) {
-                    // Do whatever you want to do with response
-                }
-            });
-    
+Milano.Builder builder = new Milano.Builder(MainActivity.this);
+//This is the part of url which will remain same in future request
+String defaultURLPrefix = "https://www.yourdomain.com";
+String request = "{\"username\": \"IntruderShanky\",\"password\": \"asd54fbg\"}";
+builder.setCookieTag("Login Cookies");
+builder.shouldDisplayDialog(true);
+builder.setDialogMessage("Fetching Info");
+builder.setDialogTitle("Loging In");
+builder.shouldManageCookies(true);
+builder.setConnectTimeOut(6000);
+builder.setReadTimeOut(5500);
+builder.setNetworkErrorMessage("Internet not connected");
+builder.setDefaultURLPrefix(defaultURLPrefix);
+
+//Create an instance of Milano, use this instance for future request
+Milano milano = builder.build();
+
+//Make HTTP request with customized request properties
+milano.fromURL("/user_login")
+      .doPost(request)
+      .execute(new OnRequestComplete() {
+            @Override
+            public void onSuccess(String response, int responseCode) {
+                   //Do whatever you want to do
+                   addText("\nResponse: " + response);
+            }
+            
+            @Override
+            public void onError(String error, int errorCode) {
+                   //Do whatever you want to do
+                   addText("\nError: " + error);
+            }
+       });
 ```
-
-
-#### To Customize request
-- Set custom loading message
-- Set network error
-
-
-```java
-Milano.along(MainActivity.this)
-            .fromUrl(url)
-            .manageCookies(true)
-            .displayLoadingTitle("Loading")
-            .displayLoadingMessage("User Data")
-            .setNetworkError("Internet connection is unavailable")
-            .execute(new OnRequestComplete() {
-                    @Override
-                    public void onComplete(String response) {
-                        // Do whatever you want to do with response
-                    }
-            });
-```
-
-
-
-
 
 Licence
 --------
