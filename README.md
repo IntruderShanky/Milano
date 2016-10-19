@@ -19,12 +19,12 @@ allprojects {
 ```
 #####Step 2. Add the dependency
 ```groovy
-compile 'com.github.IntruderShanky:Milano:1.1.0'
+compile 'com.github.IntruderShanky:Milano:1.2.0'
 ```
 ####**OR**
 ###Download via Gradle
 ```groovy
-compile 'com.intrusoft.milano:milano:1.1.0'
+compile 'com.intrusoft.milano:milano:1.2.0'
 ```
 
 Features
