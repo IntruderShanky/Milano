@@ -6,6 +6,10 @@ Easy to make HTTP Request.
 Easy to manage cookies with HTTP Request and HTTP Response.
 An automated cookies manager library for android.
 
+[Demo App - IS Library](https://play.google.com/store/apps/details?id=com.intrusoft.islibrarydemo)
+
+<a href='https://play.google.com/store/apps/details?id=com.intrusoft.islibrarydemo&utm_source=global_co&utm_small=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="193" height="75"/></a>
+
 #Download
 ###Download via JitPack
 #####Step 1. Add it in your root build.gradle at the end of repositories:
