@@ -88,6 +88,9 @@ public class RequestCreator {
                         connection.setRequestMethod(requestType.value);
                         connection.setRequestProperty("Content-Type", "application/json");
 
+                        //Setting cookies to request
+                        if (configuration.isShouldManageCookies() && cookies.getStringSet(configuration.getCookieTag(), null) != null)
+                            connection.setRequestProperty("Cookie", TextUtils.join(";", cookies.getStringSet(configuration.getCookieTag(), null)));
 
                         //Preparing Connection for HTTP requests other than GET.
                         if (requestType != RequestType.GET)
@@ -99,10 +102,6 @@ public class RequestCreator {
                                 outputStream = connection.getOutputStream();
                                 outputStream.write(request.getBytes());
                             }
-                        //Setting cookies to request
-                        if (configuration.isShouldManageCookies() && cookies.getStringSet(configuration.getCookieTag(), null) != null)
-                            connection.setRequestProperty("Cookie", TextUtils.join(";", cookies.getStringSet(configuration.getCookieTag(), null)));
-
                         //Connecting the Connection
                         connection.connect();
 
@@ -190,6 +189,7 @@ public class RequestCreator {
 
     /**
      * To set the {@link RequestType}
+     *
      * @param requestType
      */
     void setRequestType(RequestType requestType) {

@@ -1,4 +1,4 @@
-package com.intrusoft.libraryapp;
+package com.intrusoft.milanoapp;
 
 
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import com.intrusoft.milano.Milano;
 import com.intrusoft.milano.OnRequestComplete;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String URL = "http://yourdomaim.com";
     TextView view;
-    String request = "{\"username\": \"IntruderShanky\",\"password\": \"asd54fbg\"}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         view.setText("");
 
         //To Make fluent request use Singleton instance of Milano
-        Milano.along(MainActivity.this)
-                .fromURL("https://your_api.com/data")
-                .doGet()
+        Milano.with(MainActivity.this)
+                .fromURL(URL)
+                .doPost("Your Post Request here")
                 .shouldManageCookies(true)
                 .execute(new OnRequestComplete() {
                     @Override
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                         addText("\nError: " + error);
                     }
                 });
-
         //To make customized HTTP request use Milano.Builder
         Milano.Builder builder = new Milano.Builder(MainActivity.this);
 

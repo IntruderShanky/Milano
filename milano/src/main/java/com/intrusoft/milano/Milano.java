@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * Handle Cookies in Request and Response. Basically an automated Cookie Handler
- * Use {@link #along(Context)}  for the global singleton instance
+ * Use {@link #with(Context)}  for the global singleton instance
  */
 public class Milano {
 
@@ -26,7 +26,7 @@ public class Milano {
      *
      * @param context Reference to the current context
      */
-    public static Milano along(@NonNull Context context) {
+    public static Milano with(@NonNull Context context) {
         if (context == null) {
             throw new IllegalArgumentException("context must not be null");
         }
