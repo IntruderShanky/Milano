@@ -23,12 +23,12 @@ allprojects {
 ```
 #####Step 2. Add the dependency
 ```groovy
-compile 'com.github.IntruderShanky:Milano:1.2.0'
+compile 'com.github.IntruderShanky:Milano:1.3.0'
 ```
 ####**OR**
 ###Download via Gradle
 ```groovy
-compile 'com.intrusoft.milano:milano:1.2.0'
+compile 'com.intrusoft.milano:milano:1.3.0'
 ```
 
 Features
@@ -43,7 +43,7 @@ Implementation
 
 #### To make fluent request using singleton instance
 ```java
-Milano.along(MainActivity.this)
+Milano.with(MainActivity.this)
       .fromURL("https://your_api.com/data")
       .doGet()
       .shouldManageCookies(true)        //if false then will not set cookies to request or retrieve cookies from response.
