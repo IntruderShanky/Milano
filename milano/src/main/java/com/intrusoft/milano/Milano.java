@@ -3,6 +3,7 @@ package com.intrusoft.milano;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -101,6 +102,7 @@ public class Milano {
         private String defaultURLPrefix;
         private int readTimeOut;
         private int connectTimeOut;
+        private HashMap<String, String> requestProperty;
 
         public Builder(Context context) {
             this.context = context;
@@ -206,6 +208,13 @@ public class Milano {
             return this;
         }
 
+        public void addRequestParams(String key, String value){
+            if (requestProperty==null)
+                requestProperty = new HashMap<>();
+            if(!requestProperty.keySet().contains(key))
+                requestProperty.put(key, value);
+        }
+
         /**
          * @return instance of {@link Milano} with the defined {@link Configuration}
          */
@@ -234,6 +243,8 @@ public class Milano {
                     .setShouldManageCookies(manageCookies)
                     .setReadTimeOut(readTimeOut)
                     .setConnectTimeOut(connectTimeOut);
+            if(requestProperty!=null)
+                configuration.setRequestProperty(requestProperty);
             RequestCreator requestCreator = new RequestCreator(context, configuration);
             Connection connection = new Connection(requestCreator);
             return new Milano(requestCreator, connection);

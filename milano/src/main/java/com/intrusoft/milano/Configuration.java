@@ -1,5 +1,7 @@
 package com.intrusoft.milano;
 
+import java.util.HashMap;
+
 /**
  * Define properties for HTTP request
  */
@@ -13,6 +15,7 @@ public class Configuration {
     private String defaultURLPrefix;
     private int readTimeOut;
     private int connectTimeOut;
+    private HashMap<String, String> requestProperty;
 
     /**
      * To retrieve or store cookies for specific tag from or into MilanoCookieStore
@@ -146,5 +149,13 @@ public class Configuration {
 
     public int getConnectTimeOut() {
         return connectTimeOut;
+    }
+
+    public HashMap<String, String> getRequestProperty() {
+        return requestProperty;
+    }
+
+    public void setRequestProperty(HashMap<String, String> requestProperty) {
+        this.requestProperty = requestProperty;
     }
 }

@@ -3,16 +3,19 @@ package com.intrusoft.milano;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -86,22 +89,33 @@ public class RequestCreator {
                         connection.setConnectTimeout(configuration.getConnectTimeOut());
                         connection.setReadTimeout(configuration.getReadTimeOut());
                         connection.setRequestMethod(requestType.value);
-                        connection.setRequestProperty("Content-Type", "application/json");
+//                        connection.setRequestProperty("Content-Type", "application/json");
 
                         //Setting cookies to request
                         if (configuration.isShouldManageCookies() && cookies.getStringSet(configuration.getCookieTag(), null) != null)
                             connection.setRequestProperty("Cookie", TextUtils.join(";", cookies.getStringSet(configuration.getCookieTag(), null)));
 
                         //Preparing Connection for HTTP requests other than GET.
-                        if (requestType != RequestType.GET)
-                            if (request == null)
-                                throw new IllegalArgumentException("For Request type " + requestType.value + ", request string must not be null");
-                            else {
-                                connection.setDoInput(true);
-                                connection.setDoOutput(true);
-                                outputStream = connection.getOutputStream();
+                        if (requestType != RequestType.GET) {
+                            connection.setDoInput(true);
+                            connection.setDoOutput(true);
+                            outputStream = connection.getOutputStream();
+                            HashMap<String, String> requestProperty = configuration.getRequestProperty();
+                            if (requestProperty != null) {
+                                Uri.Builder builder = new Uri.Builder();
+                                for (String s : requestProperty.keySet()) {
+                                    builder.appendQueryParameter(s, requestProperty.get(s));
+                                }
+                                String queryParams = builder.build().getEncodedQuery();
+                                System.out.println(queryParams);
+                                OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+                                writer.write(queryParams);
+                                writer.flush();
+                                writer.close();
+                            } else
                                 outputStream.write(request.getBytes());
-                            }
+                            outputStream.close();
+                        }
                         //Connecting the Connection
                         connection.connect();
 

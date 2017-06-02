@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         view = (TextView) findViewById(R.id.stacktrace);
         view.setText("");
+        String url = "http://weddjunction.com/site/apisignup";
 
-        //To Make fluent request use Singleton instance of Milano
+//        To Make fluent request use Singleton instance of Milano
         Milano.with(MainActivity.this)
                 .fromURL(URL)
                 .doPost("Your Post Request here")
@@ -37,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
                         addText("\nError: " + error);
                     }
                 });
-        //To make customized HTTP request use Milano.Builder
+//        To make customized HTTP request use Milano.Builder
         Milano.Builder builder = new Milano.Builder(MainActivity.this);
+
 
         //This is the part of url which will remain same in future request
         String defaultURLPrefix = "https://www.yourdomain.com";
@@ -52,12 +54,13 @@ public class MainActivity extends AppCompatActivity {
         builder.setConnectTimeOut(6000);
         builder.setReadTimeOut(5500);
         builder.setNetworkErrorMessage("Internet not connected");
-        builder.setDefaultURLPrefix(defaultURLPrefix);
+        // to send form - encoded data
+        builder.addRequestParams("key", "value");
         //Create an instance of Milano
         Milano milano = builder.build();
 
         //Make HTTP request with customized request properties
-        milano.fromURL("/user_login")
+        milano.fromURL(url)
                 .doPost(request)
                 .execute(new OnRequestComplete() {
                     @Override
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
+
 
     public void addText(String text) {
         view.setText(view.getText() + "\n\n\n" + text);
