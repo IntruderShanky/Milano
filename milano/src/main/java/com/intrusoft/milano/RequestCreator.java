@@ -136,7 +136,9 @@ public class RequestCreator {
                         Log.d(LOGTAG, "Response Code: " + connection.getResponseCode());
 
                         responseCode = connection.getResponseCode();
-                        return Convert.toString(connection.getInputStream());
+                        if (responseCode / 100 == 2)
+                            return Convert.toString(connection.getInputStream());
+                        else return Convert.toString(connection.getErrorStream());
 
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
