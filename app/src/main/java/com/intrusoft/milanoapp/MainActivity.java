@@ -9,7 +9,7 @@ import com.intrusoft.milano.Milano;
 import com.intrusoft.milano.OnRequestComplete;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String URL = "http://yourdomaim.com";
+    private static final String URL = "http://127.0.0.1:8000/api/vendor/login";
     TextView view;
 
     @Override
@@ -18,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         view = (TextView) findViewById(R.id.stacktrace);
         view.setText("");
-        String url = "http://weddjunction.com/site/apisignup";
+        String url = "{\"contact_number\":\"7206820942\",\"name\":\"Aakash Jain\",\"email\":\"absfk@gmail.com\",\"password\":\"asdfghjkl\",\"fcm_token\":\"dhM-yxcVjoc:APA91bGcQFtS9FcPKz1LbxYvB0AyMZ3r1e1WUMPhuUqzlT8PmNa83Is13ZhgOlzEahK-K-rTn-JGt0sWfZbtbo7d7PpadCPvcgkriNPeeT-2OOl_00O5aLNkzNmpXaTd81VWvsYmx3wH\",\"registered\":false}";
 
 //        To Make fluent request use Singleton instance of Milano
         Milano.with(MainActivity.this)
                 .fromURL(URL)
-                .doPost("Your Post Request here")
+                .doPost(url)
                 .shouldManageCookies(true)
                 .execute(new OnRequestComplete() {
                     @Override
@@ -39,42 +39,42 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 //        To make customized HTTP request use Milano.Builder
-        Milano.Builder builder = new Milano.Builder(MainActivity.this);
-
-
-        //This is the part of url which will remain same in future request
-        String defaultURLPrefix = "https://www.yourdomain.com";
-        String request = "{\"username\": \"IntruderShanky\",\"password\": \"asd54fbg\"}";
-
-        builder.setCookieTag("Login Cookies");
-        builder.shouldDisplayDialog(true);
-        builder.setDialogMessage("Fetching Info");
-        builder.setDialogTitle("Loging In");
-        builder.shouldManageCookies(true);
-        builder.setConnectTimeOut(6000);
-        builder.setReadTimeOut(5500);
-        builder.setNetworkErrorMessage("Internet not connected");
-        // to send form - encoded data
-        builder.addRequestParams("key", "value");
-        //Create an instance of Milano
-        Milano milano = builder.build();
-
-        //Make HTTP request with customized request properties
-        milano.fromURL(url)
-                .doPost(request)
-                .execute(new OnRequestComplete() {
-                    @Override
-                    public void onSuccess(String response, int responseCode) {
-                        //Do whatever you want to do
-                        addText("\nResponse: " + response);
-                    }
-
-                    @Override
-                    public void onError(String error, int errorCode) {
-                        //Do whatever you want to do
-                        addText("\nError: " + error);
-                    }
-                });
+//        Milano.Builder builder = new Milano.Builder(MainActivity.this);
+//
+//
+//        //This is the part of url which will remain same in future request
+//        String defaultURLPrefix = "https://www.yourdomain.com";
+//        String request = "{\"username\": \"IntruderShanky\",\"password\": \"asd54fbg\"}";
+//
+//        builder.setCookieTag("Login Cookies");
+//        builder.shouldDisplayDialog(true);
+//        builder.setDialogMessage("Fetching Info");
+//        builder.setDialogTitle("Loging In");
+//        builder.shouldManageCookies(true);
+//        builder.setConnectTimeOut(6000);
+//        builder.setReadTimeOut(5500);
+//        builder.setNetworkErrorMessage("Internet not connected");
+//        // to send form - encoded data
+//        builder.addRequestParams("key", "value");
+//        //Create an instance of Milano
+//        Milano milano = builder.build();
+//
+//        //Make HTTP request with customized request properties
+//        milano.fromURL(url)
+//                .doPost(request)
+//                .execute(new OnRequestComplete() {
+//                    @Override
+//                    public void onSuccess(String response, int responseCode) {
+//                        //Do whatever you want to do
+//                        addText("\nResponse: " + response);
+//                    }
+//
+//                    @Override
+//                    public void onError(String error, int errorCode) {
+//                        //Do whatever you want to do
+//                        addText("\nError: " + error);
+//                    }
+//                });
 
     }
 

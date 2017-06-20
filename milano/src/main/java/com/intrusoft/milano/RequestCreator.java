@@ -89,7 +89,6 @@ public class RequestCreator {
                         connection.setConnectTimeout(configuration.getConnectTimeOut());
                         connection.setReadTimeout(configuration.getReadTimeOut());
                         connection.setRequestMethod(requestType.value);
-//                        connection.setRequestProperty("Content-Type", "application/json");
 
                         //Setting cookies to request
                         if (configuration.isShouldManageCookies() && cookies.getStringSet(configuration.getCookieTag(), null) != null)
@@ -99,8 +98,11 @@ public class RequestCreator {
                         if (requestType != RequestType.GET) {
                             connection.setDoInput(true);
                             connection.setDoOutput(true);
-                            outputStream = connection.getOutputStream();
                             HashMap<String, String> requestProperty = configuration.getRequestProperty();
+                            if(requestProperty==null){
+                                connection.setRequestProperty("Content-Type", "application/json");
+                            }
+                            outputStream = connection.getOutputStream();
                             if (requestProperty != null) {
                                 Uri.Builder builder = new Uri.Builder();
                                 for (String s : requestProperty.keySet()) {
