@@ -39,12 +39,21 @@ public class RequestCreator {
     private Configuration configuration;
     private String request;
     private int responseCode;
-    RequestType requestType;
+    private RequestType requestType;
+    private HashMap<String,String> headers;
 
     RequestCreator(Context context, Configuration configuration) {
         this.context = context;
         this.configuration = configuration;
         cookies = context.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+    }
+
+
+    public RequestCreator addHeader(String key, String value){
+        if(headers == null)
+            headers = new HashMap<>();
+        headers.put(key, value);
+        return this;
     }
 
     /**
@@ -117,6 +126,13 @@ public class RequestCreator {
                             } else
                                 outputStream.write(request.getBytes());
                             outputStream.close();
+                        }
+
+                        //adding headers
+                        if(headers != null){
+                            for (String s : headers.keySet()) {
+                                connection.setRequestProperty(s, headers.get(s));
+                            }
                         }
                         //Connecting the Connection
                         connection.connect();

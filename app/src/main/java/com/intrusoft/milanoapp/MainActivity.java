@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
 //        To Make fluent request use Singleton instance of Milano
         Milano.with(MainActivity.this)
                 .fromURL(URL)
-                .doPost("Your post data")
+                .doGet()
+                .addHeader("header_key","header_value")
                 .shouldManageCookies(true)
                 .execute(new OnRequestComplete() {
                     @Override
