@@ -104,6 +104,12 @@ public class RequestCreator {
                             connection.setRequestProperty("Cookie", TextUtils.join(";", cookies.getStringSet(configuration.getCookieTag(), null)));
 
                         //Preparing Connection for HTTP requests other than GET.
+                        //adding headers
+                        if(headers != null){
+                            for (String s : headers.keySet()) {
+                                connection.setRequestProperty(s, headers.get(s));
+                            }
+                        }
                         if (requestType != RequestType.GET) {
                             connection.setDoInput(true);
                             connection.setDoOutput(true);
@@ -128,12 +134,7 @@ public class RequestCreator {
                             outputStream.close();
                         }
 
-                        //adding headers
-                        if(headers != null){
-                            for (String s : headers.keySet()) {
-                                connection.setRequestProperty(s, headers.get(s));
-                            }
-                        }
+
                         //Connecting the Connection
                         connection.connect();
 
