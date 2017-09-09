@@ -99,6 +99,18 @@ milano.fromURL("/user_login")
        });
 ```
 
+Progaurd Rules:
+-----------
+Add these lines to your progaurd file for release build.
+```
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** w(...);
+    public static *** v(...);
+    public static *** i(...);
+}
+```
+
 Licence
 --------
 
