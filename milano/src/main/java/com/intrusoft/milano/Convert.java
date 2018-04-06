@@ -20,7 +20,7 @@ public class Convert {
         try {
             br = new BufferedReader(new InputStreamReader(stream));
             while ((line = br.readLine()) != null) {
-                sb.append(line);
+                sb.append(line).append("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

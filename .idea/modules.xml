@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Milano.iml" filepath="$PROJECT_DIR$/Milano.iml" />
+      <module fileurl="file://E:\Projects\Android\Milano\Milano.iml" filepath="E:\Projects\Android\Milano\Milano.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\Projects\Android\Milano\app\app.iml" filepath="E:\Projects\Android\Milano\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/milano/milano.iml" filepath="$PROJECT_DIR$/milano/milano.iml" />
+      <module fileurl="file://E:\Projects\Android\Milano\milano\milano.iml" filepath="E:\Projects\Android\Milano\milano\milano.iml" />
     </modules>
   </component>
 </project>
