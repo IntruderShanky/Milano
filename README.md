@@ -10,9 +10,9 @@ An automated cookies manager library for android.
 
 <a href='https://play.google.com/store/apps/details?id=com.intrusoft.islibrarydemo&utm_source=global_co&utm_small=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="193" height="75"/></a>
 
-#Download
-###Download via JitPack
-#####Step 1. Add it in your root build.gradle at the end of repositories:
+# Download
+### Download via JitPack
+##### Step 1. Add it in your root build.gradle at the end of repositories:
 ```groovy
 allprojects {
     repositories {
@@ -21,14 +21,14 @@ allprojects {
     }
 }
 ```
-#####Step 2. Add the dependency
+##### Step 2. Add the dependency
 ```groovy
-compile 'com.github.IntruderShanky:Milano:1.3.0'
+compile 'com.github.IntruderShanky:Milano:2.0.2'
 ```
-####**OR**
-###Download via Gradle
+#### **OR**
+### Download via Gradle
 ```groovy
-compile 'com.intrusoft.milano:milano:1.3.0'
+compile 'com.intrusoft.milano:milano:2.0.2'
 ```
 
 Features
